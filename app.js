@@ -35,7 +35,7 @@ descriptionButton.addEventListener('click', () => {
 addItemButton.addEventListener('click', () => {
   const ul = document.querySelectorAll('.list ul')[0];
   let li = document.createElement('li');
-  li.textContent = addItemInput.value;
+  li.innerHTML = addItemInput.value + '<button>Remove</button>';
   ul.appendChild(li);
   addItemInput.value = "";
 })
