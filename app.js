@@ -3,27 +3,19 @@ const listDiv = document.querySelector('.list');
 const descriptionInput = document.querySelector('input.description');
 const descriptionP = document.querySelector('p.description');
 const descriptionButton = document.querySelector('button.description');
+const listUl = listDiv.querySelector('ul');
 const addItemInput = document.querySelector('input.addItemInput');
 const addItemButton = document.querySelector('button.addItemButton');
-const removeItemButton = document.querySelector('button.removeItemButton');
 
 // console.log(listDiv);
 
-listDiv.addEventListener('mouseover', (event) => {
-  if (event.target.tagName === 'LI') {
-    event.target.textContent = event.target.textContent.toUpperCase();
+listUl.addEventListener('click', (event) => {
+  if (event.target.tagName === 'BUTTON') {
+    let li = event.target.parentNode;
+    let ul = li.parentNode;
+    ul.removeChild(li);
   }
 });
-
-listDiv.addEventListener('mouseout', (event) => {
-  if (event.target.tagName === 'LI') {
-    event.target.textContent = event.target.textContent.toLowerCase();
-  }
-});
-
-// listDiv.addEventListener('mouseout', (event) => {
-//   listItems[i].textContent = listItems[i].textContent.toLowerCase();
-// });
 
 toggleList.addEventListener('click', () => {
   if (listDiv.style.display === 'none') {
@@ -46,10 +38,4 @@ addItemButton.addEventListener('click', () => {
   li.textContent = addItemInput.value;
   ul.appendChild(li);
   addItemInput.value = "";
-})
-
-removeItemButton.addEventListener('click', () => {
-  const ul = document.querySelectorAll('.list ul')[0];
-  let li = document.querySelector('li:last-child');
-  ul.removeChild(li);
 })
