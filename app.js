@@ -11,9 +11,18 @@ const addItemButton = document.querySelector('button.addItemButton');
 
 listUl.addEventListener('click', (event) => {
   if (event.target.tagName === 'BUTTON') {
-    let li = event.target.parentNode;
-    let ul = li.parentNode;
-    ul.removeChild(li);
+    if (event.target.className === 'remove') {
+      let li = event.target.parentNode;
+      let ul = li.parentNode;
+      ul.removeChild(li);
+    } else if (event.target.className === 'up') {
+      let li = event.target.parentNode;
+      let prevLi = li.previousElementSibling;
+      let ul = li.parentNode;
+      if (prevLi) {
+        ul.insertBefore(li, prevLi);
+      }
+    }
   }
 });
 
@@ -35,7 +44,7 @@ descriptionButton.addEventListener('click', () => {
 addItemButton.addEventListener('click', () => {
   const ul = document.querySelectorAll('.list ul')[0];
   let li = document.createElement('li');
-  li.innerHTML = addItemInput.value + '<button>Remove</button>';
+  li.innerHTML = addItemInput.value + '<button class="up">Up</button><button class="remove">Remove</button>';
   ul.appendChild(li);
   addItemInput.value = "";
 })
